@@ -18,37 +18,48 @@ function ($scope, $http, $timeout, $interval) {
         'Dataone': 'Dataone.png'
     };
 
+    // ---------- LOCAL STORAGE SETTINGS ----------
+    var DEFAULT_QUESTION_COUNT = 5;
+    var DEFAULT_TIMER = 10;
+
+    function getStoredInt(key, fallback) {
+        var val = localStorage.getItem(key);
+        return val !== null ? parseInt(val, 10) : fallback;
+    }
+
+    $scope.globalQuestionCount = getStoredInt('slt_questionCount', DEFAULT_QUESTION_COUNT);
+    $scope.globalTimer = getStoredInt('slt_timer', DEFAULT_TIMER);
+
     // ---------- STATE ----------
     $scope.page = 'home';
     $scope.selectedCategory = null;
     $scope.userName = '';
     $scope.userTp = '';
     $scope.showAdmin = false;
+    $scope.adminSaved = false;
     $scope.score = 0;
     $scope.currentQIndex = 0;
     $scope.quizQuestions = [];
-    $scope.timerSeconds = 10;
+    $scope.timerSeconds = $scope.globalTimer;
     $scope.timerPercent = 100;
     $scope.selectedAnswer = null;
     $scope.answerRevealed = false;
 
-    var logoClickCount = 0;
-    var logoClickTimer = null;
     var questionTimer = null;
 
     // ---------- CATEGORIES ----------
     $scope.categories = [
-        { category: 'EdgeDefend', image: 'EdgeDefend.png', qCount: 5 },
-        { category: 'Kaspersky', image: 'Kaspersky.png', qCount: 5 },
-        { category: 'Hostingcub', image: 'Hostingcub.png', qCount: 5 },
-        { category: 'Akaza Cloud Fusion', image: 'Akaza Cloud.png', qCount: 5 },
-        { category: 'CubKit', image: 'CubKit.png', qCount: 5 },
-        { category: 'Traverse', image: 'Traverse.png', qCount: 5 },
-        { category: 'Zoho Bigin', image: 'Zoho Bigin.png', qCount: 5 },
-        { category: 'OrdeNow', image: 'OrdeNow.png', qCount: 5 },
-        { category: 'Akaza Chat X', image: 'Akaza Chat X.png', qCount: 5 },
-        { category: 'PeoBiz', image: 'PeoBiz.png', qCount: 5 },
-        { category: 'Dataone', image: 'Dataone.png', qCount: 5 }
+        { category: 'EdgeDefend', image: 'EdgeDefend.png' },
+        { category: 'Kaspersky', image: 'Kaspersky.png' },
+        { category: 'Hostingcub', image: 'Hostingcub.png' },
+        { category: 'Akaza Cloud Fusion', image: 'Akaza Cloud.png' },
+        { category: 'CubKit', image: 'CubKit.png' },
+        { category: 'Traverse', image: 'Traverse.png' },
+        { category: 'Zoho Bigin', image: 'Zoho Bigin.png' },
+        { category: 'OrdeNow', image: 'OrdeNow.png' },
+        { category: 'Akaza Chat X', image: 'Akaza Chat X.png' },
+        { category: 'PeoBiz', image: 'PeoBiz.png' },
+        { category: 'Dataone', image: 'Dataone.png' }
     ];
 
     $scope.getImage = function (catName) {
@@ -61,45 +72,33 @@ function ($scope, $http, $timeout, $interval) {
     };
 
     $scope.onLogoClick = function ($event) {
-        logoClickCount++;
-        if (logoClickTimer) $timeout.cancel(logoClickTimer);
-        logoClickTimer = $timeout(function () { logoClickCount = 0; }, 1000);
-        if (logoClickCount >= 3) {
-            $scope.showAdmin = true;
-            logoClickCount = 0;
-            loadAllSettings();
-        }
+        $scope.showAdmin = true;
+        $scope.adminSaved = false;
     };
 
     $scope.closeAdmin = function ($event) {
         $scope.showAdmin = false;
     };
 
-    // ---------- ADMIN ----------
-    function loadAllSettings() {
-        $scope.categories.forEach(function (cat) {
-            $http.get('/api/settings/' + encodeURIComponent(cat.category))
-                .then(function (res) { cat.qCount = res.data.questionCount; })
-                .catch(function () { /* keep default */ });
-        });
-    }
-
-    $scope.incrementQ = function (cat) {
-        if (cat.qCount < 5) cat.qCount++;
+    // ---------- ADMIN (localStorage) ----------
+    $scope.incrementGlobalQ = function () {
+        if ($scope.globalQuestionCount < 5) $scope.globalQuestionCount++;
+    };
+    $scope.decrementGlobalQ = function () {
+        if ($scope.globalQuestionCount > 1) $scope.globalQuestionCount--;
+    };
+    $scope.incrementTimer = function () {
+        if ($scope.globalTimer < 60) $scope.globalTimer++;
+    };
+    $scope.decrementTimer = function () {
+        if ($scope.globalTimer > 3) $scope.globalTimer--;
     };
 
-    $scope.decrementQ = function (cat) {
-        if (cat.qCount > 1) cat.qCount--;
-    };
-
-    $scope.saveSettings = function (cat) {
-        $http.post('/api/settings', {
-            category: cat.category,
-            questionCount: cat.qCount
-        }).then(function () {
-            cat.saved = true;
-            $timeout(function () { cat.saved = false; }, 1500);
-        });
+    $scope.saveAdminSettings = function () {
+        localStorage.setItem('slt_questionCount', $scope.globalQuestionCount);
+        localStorage.setItem('slt_timer', $scope.globalTimer);
+        $scope.adminSaved = true;
+        $timeout(function () { $scope.adminSaved = false; }, 2000);
     };
 
     // ---------- FORM PAGE ----------
@@ -112,10 +111,7 @@ function ($scope, $http, $timeout, $interval) {
     $scope.startQuiz = function () {
         if (!$scope.userName || !$scope.userTp) return;
 
-        var cat = $scope.categories.find(function (c) {
-            return c.category === $scope.selectedCategory;
-        });
-        var qCount = cat ? cat.qCount : 5;
+        var qCount = $scope.globalQuestionCount;
 
         $http.get('/api/question/' + encodeURIComponent($scope.selectedCategory))
             .then(function (res) {
@@ -133,14 +129,14 @@ function ($scope, $http, $timeout, $interval) {
     // ---------- QUIZ LOGIC ----------
     function startTimer() {
         stopTimer();
-        $scope.timerSeconds = 10;
+        $scope.timerSeconds = $scope.globalTimer;
         $scope.timerPercent = 100;
         $scope.selectedAnswer = null;
         $scope.answerRevealed = false;
 
         questionTimer = $interval(function () {
             $scope.timerSeconds--;
-            $scope.timerPercent = ($scope.timerSeconds / 10) * 100;
+            $scope.timerPercent = ($scope.timerSeconds / $scope.globalTimer) * 100;
             if ($scope.timerSeconds <= 0) {
                 revealAndAdvance(null);
             }

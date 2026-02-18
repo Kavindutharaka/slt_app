@@ -22,13 +22,40 @@ html, body {
     pointer-events: none;
 }
 
+/* BRAND-COLORED SHINE SWEEP (blue -> cyan -> green) */
+.bg-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 25%,
+        rgba(0, 63, 138, 0.06) 33%,
+        rgba(0, 191, 255, 0.12) 42%,
+        rgba(59, 170, 53, 0.10) 50%,
+        rgba(0, 191, 255, 0.12) 58%,
+        rgba(0, 63, 138, 0.06) 67%,
+        transparent 75%
+    );
+    animation: bgShine 8s ease-in-out infinite;
+    will-change: transform;
+    pointer-events: none;
+}
+
+@keyframes bgShine {
+    0% { transform: translate3d(-60%, -60%, 0) rotate(45deg); }
+    100% { transform: translate3d(60%, 60%, 0) rotate(45deg); }
+}
+
 .glass-orb {
     position: absolute;
     border-radius: 50%;
     will-change: transform, opacity;
     backface-visibility: hidden;
     filter: blur(80px);
-    opacity: 0.18;
+    opacity: 0.22;
 }
 
 .orb1 {
@@ -81,8 +108,8 @@ html, body {
     50% { transform: translate3d(300px, -200px, 0) scale(1.1); }
 }
 @keyframes floatOrb5 {
-    0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.18; }
-    50% { transform: translate3d(-150px, -300px, 0) scale(0.85); opacity: 0.12; }
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.22; }
+    50% { transform: translate3d(-150px, -300px, 0) scale(0.85); opacity: 0.14; }
 }
 
 /* ===== PAGE CONTAINER ===== */
@@ -114,6 +141,13 @@ html, body {
     margin-top: 80px;
     cursor: pointer;
     user-select: none;
+    animation: logoFloat 4s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -12px, 0); }
 }
 
 .home-logo {
@@ -126,26 +160,44 @@ html, body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 24px;
-    margin-top: 60px;
+    margin-top: 150px;
     padding: 0 50px;
     max-width: 1000px;
 }
 
 .sub-card {
-    width: 175px;
+    width: 210px;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
     transition: transform 0.2s ease;
+    animation: cardEntrance 0.6s ease-out both;
 }
+.sub-card:nth-child(1) { animation-delay: 0.05s; }
+.sub-card:nth-child(2) { animation-delay: 0.1s; }
+.sub-card:nth-child(3) { animation-delay: 0.15s; }
+.sub-card:nth-child(4) { animation-delay: 0.2s; }
+.sub-card:nth-child(5) { animation-delay: 0.25s; }
+.sub-card:nth-child(6) { animation-delay: 0.3s; }
+.sub-card:nth-child(7) { animation-delay: 0.35s; }
+.sub-card:nth-child(8) { animation-delay: 0.4s; }
+.sub-card:nth-child(9) { animation-delay: 0.45s; }
+.sub-card:nth-child(10) { animation-delay: 0.5s; }
+.sub-card:nth-child(11) { animation-delay: 0.55s; }
+
+@keyframes cardEntrance {
+    0% { opacity: 0; transform: translate3d(0, 40px, 0) scale(0.9); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
 .sub-card:active {
     transform: scale(0.95);
 }
 
 .sub-card-inner {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -155,8 +207,30 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 18px;
+    padding: 22px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer sweep on each card */
+.sub-card-inner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.12), rgba(59, 170, 53, 0.08), transparent);
+    animation: cardShimmer 5s ease-in-out infinite;
+    will-change: transform;
+    pointer-events: none;
+}
+.sub-card:nth-child(odd) .sub-card-inner::after { animation-delay: 0s; }
+.sub-card:nth-child(even) .sub-card-inner::after { animation-delay: 2.5s; }
+
+@keyframes cardShimmer {
+    0%, 60%, 100% { transform: translate3d(0, 0, 0); }
+    80% { transform: translate3d(500px, 0, 0); }
 }
 
 .sub-card.selected .sub-card-inner {
@@ -172,30 +246,62 @@ html, body {
 
 .sub-label {
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 23px;
     font-weight: 600;
     color: #1a1a2e;
     text-align: center;
     line-height: 1.2;
 }
 
+/* NEXT BUTTON — glow + pulse + shine */
 .btn-next {
-    margin-top: 50px;
-    width: 400px;
-    height: 70px;
+    margin-top: 100px;
+    width: 500px;
+    height: 90px;
     border: none;
-    border-radius: 16px;
+    border-radius: 20px;
     background: linear-gradient(135deg, #003F8A 0%, #3BAA35 100%);
     color: #fff;
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    animation: btnPulse 2.5s ease-in-out infinite;
+    will-change: transform;
+    box-shadow: 0 0 30px rgba(0, 63, 138, 0.3), 0 0 60px rgba(59, 170, 53, 0.15);
+}
+.btn-next::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: btnShine 3s ease-in-out infinite;
+    will-change: transform;
 }
 .btn-next:disabled {
     opacity: 0.35;
     cursor: default;
+    animation: none;
+    box-shadow: none;
+}
+.btn-next:disabled::after {
+    animation: none;
+}
+
+@keyframes btnPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(0, 63, 138, 0.3), 0 0 60px rgba(59, 170, 53, 0.15); }
+    15% { transform: scale(1.05) rotate(-0.5deg); box-shadow: 0 0 45px rgba(0, 63, 138, 0.4), 0 0 80px rgba(59, 170, 53, 0.25); }
+    30% { transform: scale(1) rotate(0.5deg); }
+    45% { transform: scale(1.04) rotate(0deg); box-shadow: 0 0 40px rgba(0, 63, 138, 0.35), 0 0 70px rgba(59, 170, 53, 0.2); }
+    60% { transform: scale(1); }
+}
+@keyframes btnShine {
+    0%, 65%, 100% { transform: translate3d(0, 0, 0); }
+    85% { transform: translate3d(500px, 0, 0); }
 }
 
 /* ===== ADMIN PANEL ===== */
@@ -270,16 +376,26 @@ html, body {
     text-align: center;
 }
 
-.btn-save-small {
-    margin-left: 16px;
-    padding: 8px 18px;
+.btn-save-admin {
+    display: block;
+    margin: 30px auto 0;
+    padding: 14px 60px;
     border: none;
-    border-radius: 10px;
+    border-radius: 14px;
     background: linear-gradient(135deg, #003F8A, #3BAA35);
     color: #fff;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
     cursor: pointer;
+}
+
+.admin-saved-msg {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3BAA35;
 }
 
 .btn-close {
@@ -303,13 +419,14 @@ html, body {
 }
 
 .form-top-logo img {
-    height: 200px;
+    max-height: 200px;
+    max-width: 620px;
     width: auto;
     object-fit: contain;
 }
 
 .form-card {
-    margin-top: 80px;
+    margin-top: 300px;
     width: 750px;
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(20px);
@@ -324,34 +441,40 @@ html, body {
 }
 
 .form-card h2 {
-    font-size: 32px;
+    font-size: 53px;
     color: #003F8A;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .form-group {
     width: 100%;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .form-group label {
     display: block;
-    font-size: 18px;
+    font-size: 39px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .form-group input {
     width: 100%;
-    height: 64px;
+    height: 80px;
     border: 2px solid rgba(0, 63, 138, 0.15);
     border-radius: 14px;
     padding: 0 24px;
-    font-size: 20px;
+    font-size: 39px;
+    text-align: center;
     background: rgba(255, 255, 255, 0.7);
     outline: none;
     transition: border-color 0.2s ease;
+    text-transform: uppercase;
 }
 
 .form-group input:focus {
@@ -360,13 +483,13 @@ html, body {
 
 .btn-start {
     margin-top: 20px;
-    width: 350px;
-    height: 70px;
+    width: 440px;
+    height: 90px;
     border: none;
-    border-radius: 16px;
+    border-radius: 20px;
     background: linear-gradient(135deg, #003F8A 0%, #3BAA35 100%);
     color: #fff;
-    font-size: 22px;
+    font-size: 41px;
     font-weight: 700;
     letter-spacing: 3px;
     cursor: pointer;
@@ -381,53 +504,54 @@ html, body {
    PAGE 3 : QUIZ
    =================================================== */
 .quiz-top-logo {
-    margin-top: 60px;
+    margin-top: 160px;
 }
 
 .quiz-top-logo img {
-    height: 140px;
+    max-height: 140px;
+    max-width: 500px;
     width: auto;
     object-fit: contain;
 }
 
 .quiz-progress {
-    margin-top: 40px;
-    width: 800px;
+    margin-top: 400px;
+    width: 960px;
     display: flex;
     align-items: center;
     gap: 20px;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 600;
     color: #003F8A;
 }
 
 .timer-bar-wrap {
     flex: 1;
-    height: 14px;
-    border-radius: 7px;
+    height: 18px;
+    border-radius: 9px;
     background: rgba(0, 63, 138, 0.1);
     overflow: hidden;
 }
 
 .timer-bar {
     height: 100%;
-    border-radius: 7px;
+    border-radius: 9px;
     background: linear-gradient(90deg, #3BAA35, #00BFFF);
     transition: width 1s linear;
     will-change: width;
 }
 
 .timer-text {
-    min-width: 40px;
+    min-width: 60px;
     text-align: right;
-    font-size: 28px;
+    font-size: 36px;
     font-weight: 700;
     color: #003F8A;
 }
 
 .quiz-card {
     margin-top: 40px;
-    width: 900px;
+    width: 960px;
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -438,9 +562,9 @@ html, body {
 }
 
 .q-text {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 600;
-    line-height: 1.5;
+    line-height: 1.4;
     color: #1a1a2e;
     margin-bottom: 40px;
     text-align: center;
@@ -472,12 +596,12 @@ html, body {
 }
 
 .opt-key {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
     background: linear-gradient(135deg, #003F8A, #00BFFF);
     color: #fff;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -486,9 +610,9 @@ html, body {
 }
 
 .opt-text {
-    font-size: 19px;
+    font-size: 27px;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.3;
     color: #1a1a2e;
 }
 
@@ -524,14 +648,15 @@ html, body {
 }
 
 .result-logo img {
-    height: 200px;
+    max-height: 200px;
+    max-width: 500px;
     width: auto;
     object-fit: contain;
 }
 
 .result-card {
     margin-top: 80px;
-    width: 700px;
+    width: 750px;
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -543,21 +668,21 @@ html, body {
 }
 
 .result-card h2 {
-    font-size: 36px;
+    font-size: 44px;
     color: #003F8A;
     margin-bottom: 20px;
 }
 
 .result-name {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: 600;
     color: #3BAA35;
     margin-bottom: 40px;
 }
 
 .score-circle {
-    width: 220px;
-    height: 220px;
+    width: 260px;
+    height: 260px;
     margin: 0 auto 30px;
     border-radius: 50%;
     background: linear-gradient(135deg, #003F8A, #3BAA35);
@@ -569,20 +694,20 @@ html, body {
 }
 
 .score-num {
-    font-size: 72px;
+    font-size: 80px;
     font-weight: 800;
     color: #fff;
     line-height: 1;
 }
 
 .score-denom {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.8);
 }
 
 .result-msg {
-    font-size: 26px;
+    font-size: 34px;
     font-weight: 700;
     color: #003F8A;
 }

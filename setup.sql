@@ -1,10 +1,7 @@
-CREATE DATABASE SLTQuizDB;
+USE phvtech_main;
 GO
 
-USE SLTQuizDB;
-GO
-
-CREATE TABLE Scores (
+CREATE TABLE dbo.slt_score (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     UserName NVARCHAR(200) NOT NULL,
     Tp NVARCHAR(100) NOT NULL,
@@ -12,11 +9,5 @@ CREATE TABLE Scores (
     Score INT NOT NULL,
     TotalQuestions INT NOT NULL,
     CreatedAt DATETIME NOT NULL DEFAULT GETDATE()
-);
-
-CREATE TABLE QuizSettings (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Category NVARCHAR(100) NOT NULL UNIQUE,
-    QuestionCount INT NOT NULL DEFAULT 5
 );
 GO

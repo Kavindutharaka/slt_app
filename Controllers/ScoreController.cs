@@ -21,7 +21,7 @@ public class ScoreController : ControllerBase
         using var conn = new SqlConnection(_connStr);
         conn.Open();
         using var cmd = new SqlCommand(
-            @"INSERT INTO Scores (UserName, Tp, Category, Score, TotalQuestions, CreatedAt)
+            @"INSERT INTO dbo.slt_score (UserName, Tp, Category, Score, TotalQuestions, CreatedAt)
               VALUES (@UserName, @Tp, @Category, @Score, @TotalQuestions, @CreatedAt)", conn);
         cmd.Parameters.AddWithValue("@UserName", record.UserName);
         cmd.Parameters.AddWithValue("@Tp", record.Tp);

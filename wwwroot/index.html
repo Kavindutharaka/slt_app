@@ -11,6 +11,7 @@
 
     <!-- GLASS ANIMATED BACKGROUND -->
     <div class="bg-layer">
+        <div class="bg-shine"></div>
         <div class="glass-orb orb1"></div>
         <div class="glass-orb orb2"></div>
         <div class="glass-orb orb3"></div>
@@ -43,15 +44,27 @@
         <div class="admin-overlay" ng-show="showAdmin" ng-click="closeAdmin($event)">
             <div class="admin-panel" ng-click="$event.stopPropagation()">
                 <h3>Admin Settings</h3>
-                <div class="admin-row" ng-repeat="cat in categories">
-                    <span>{{cat.category}}</span>
+
+                <div class="admin-row">
+                    <span>Questions Per Quiz</span>
                     <div class="admin-counter">
-                        <button ng-click="decrementQ(cat)">-</button>
-                        <span>{{cat.qCount}}</span>
-                        <button ng-click="incrementQ(cat)">+</button>
+                        <button ng-click="decrementGlobalQ()">-</button>
+                        <span>{{globalQuestionCount}}</span>
+                        <button ng-click="incrementGlobalQ()">+</button>
                     </div>
-                    <button class="btn-save-small" ng-click="saveSettings(cat)">Save</button>
                 </div>
+
+                <div class="admin-row">
+                    <span>Timer (seconds)</span>
+                    <div class="admin-counter">
+                        <button ng-click="decrementTimer()">-</button>
+                        <span>{{globalTimer}}</span>
+                        <button ng-click="incrementTimer()">+</button>
+                    </div>
+                </div>
+
+                <button class="btn-save-admin" ng-click="saveAdminSettings()">Save</button>
+                <p class="admin-saved-msg" ng-show="adminSaved">Saved!</p>
                 <button class="btn-close" ng-click="showAdmin = false">Close</button>
             </div>
         </div>
@@ -67,11 +80,11 @@
             <h2>Enter Your Details</h2>
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" ng-model="userName" placeholder="Your name" maxlength="100">
+                <input type="text" ng-model="userName" maxlength="100">
             </div>
             <div class="form-group">
-                <label>TP Number</label>
-                <input type="text" ng-model="userTp" placeholder="TP number" maxlength="50">
+                <label>Mobile Number</label>
+                <input type="text" ng-model="userTp" maxlength="50">
             </div>
             <button class="btn-start" ng-click="startQuiz()" ng-disabled="!userName || !userTp">
                 START
