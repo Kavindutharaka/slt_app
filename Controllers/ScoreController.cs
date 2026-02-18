@@ -15,6 +15,31 @@ public class ScoreController : ControllerBase
         _connStr = config.GetConnectionString("Default")!;
     }
 
+    [HttpGet]
+    public IActionResult GetAllScores()
+    {
+        var list = new List<object>();
+        using var conn = new SqlConnection(_connStr);
+        conn.Open();
+        using var cmd = new SqlCommand(
+            "SELECT Id, UserName, Tp, Category, Score, TotalQuestions, CreatedAt FROM dbo.slt_score ORDER BY CreatedAt DESC", conn);
+        using var reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            list.Add(new
+            {
+                id = reader.GetInt32(0),
+                userName = reader.GetString(1),
+                tp = reader.GetString(2),
+                category = reader.GetString(3),
+                score = reader.GetInt32(4),
+                totalQuestions = reader.GetInt32(5),
+                createdAt = reader.GetDateTime(6).ToString("yyyy-MM-dd HH:mm:ss")
+            });
+        }
+        return Ok(list);
+    }
+
     [HttpPost]
     public IActionResult SaveScore([FromBody] ScoreRecord record)
     {

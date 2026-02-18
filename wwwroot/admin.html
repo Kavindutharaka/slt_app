@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html ng-app="adminApp">
+<head>
+    <meta charset="UTF-8">
+    <title>SLT Quiz - Admin Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #1a1a2e;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #003F8A, #3BAA35);
+            padding: 24px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header h1 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .header .btn-refresh {
+            padding: 10px 24px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            background: transparent;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .header .btn-refresh:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 20px;
+            padding: 24px 40px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: #fff;
+            border-radius: 14px;
+            padding: 20px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .stat-card .stat-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stat-card .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #003F8A;
+            margin-top: 4px;
+        }
+
+        .filter-bar {
+            padding: 0 40px 20px;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 10px 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+        }
+        .filter-bar input:focus, .filter-bar select:focus {
+            border-color: #003F8A;
+        }
+        .filter-bar input { width: 260px; }
+        .filter-bar label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .table-wrap {
+            padding: 0 40px 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        thead th {
+            background: #003F8A;
+            color: #fff;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tbody td {
+            padding: 13px 18px;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        tbody tr:hover {
+            background: #f8f9ff;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-perfect { background: #d4edda; color: #155724; }
+        .badge-good { background: #fff3cd; color: #856404; }
+        .badge-low { background: #f8d7da; color: #721c24; }
+
+        .no-data {
+            text-align: center;
+            padding: 60px;
+            font-size: 18px;
+            color: #999;
+        }
+    </style>
+</head>
+<body ng-controller="AdminCtrl">
+
+    <div class="header">
+        <h1>SLT Quiz - Score Dashboard</h1>
+        <button class="btn-refresh" ng-click="loadScores()">Refresh</button>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-label">Total Entries</div>
+            <div class="stat-value">{{filtered.length}}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Avg Score</div>
+            <div class="stat-value">{{avgScore}}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Perfect Scores</div>
+            <div class="stat-value">{{perfectCount}}</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Categories Played</div>
+            <div class="stat-value">{{uniqueCategories}}</div>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <label>Search:</label>
+        <input type="text" ng-model="searchText" placeholder="Name, TP, or Category..." ng-change="applyFilter()">
+        <label>Category:</label>
+        <select ng-model="filterCategory" ng-change="applyFilter()">
+            <option value="">All Categories</option>
+            <option ng-repeat="c in categoryList" value="{{c}}">{{c}}</option>
+        </select>
+    </div>
+
+    <div class="table-wrap">
+        <table ng-if="filtered.length > 0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>TP</th>
+                    <th>Category</th>
+                    <th>Score</th>
+                    <th>Result</th>
+                    <th>Date & Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="s in filtered">
+                    <td>{{$index + 1}}</td>
+                    <td><strong>{{s.userName}}</strong></td>
+                    <td>{{s.tp}}</td>
+                    <td>{{s.category}}</td>
+                    <td>{{s.score}} / {{s.totalQuestions}}</td>
+                    <td>
+                        <span class="badge" ng-class="{
+                            'badge-perfect': s.score === s.totalQuestions,
+                            'badge-good': s.score >= s.totalQuestions / 2 && s.score < s.totalQuestions,
+                            'badge-low': s.score < s.totalQuestions / 2
+                        }">
+                            <span ng-if="s.score === s.totalQuestions">Perfect</span>
+                            <span ng-if="s.score >= s.totalQuestions / 2 && s.score < s.totalQuestions">Good</span>
+                            <span ng-if="s.score < s.totalQuestions / 2">Low</span>
+                        </span>
+                    </td>
+                    <td>{{s.createdAt}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="no-data" ng-if="filtered.length === 0 && !loading">
+            No records found.
+        </div>
+        <div class="no-data" ng-if="loading">
+            Loading...
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('adminApp', []);
+        app.controller('AdminCtrl', ['$scope', '$http', function($scope, $http) {
+            $scope.scores = [];
+            $scope.filtered = [];
+            $scope.categoryList = [];
+            $scope.searchText = '';
+            $scope.filterCategory = '';
+            $scope.loading = true;
+            $scope.avgScore = '0';
+            $scope.perfectCount = 0;
+            $scope.uniqueCategories = 0;
+
+            $scope.loadScores = function() {
+                $scope.loading = true;
+                $http.get('/api/score').then(function(res) {
+                    $scope.scores = res.data;
+                    buildCategoryList();
+                    $scope.applyFilter();
+                    $scope.loading = false;
+                }).catch(function() {
+                    $scope.loading = false;
+                });
+            };
+
+            function buildCategoryList() {
+                var cats = {};
+                $scope.scores.forEach(function(s) { cats[s.category] = true; });
+                $scope.categoryList = Object.keys(cats).sort();
+            }
+
+            $scope.applyFilter = function() {
+                var text = ($scope.searchText || '').toLowerCase();
+                var cat = $scope.filterCategory;
+
+                $scope.filtered = $scope.scores.filter(function(s) {
+                    var matchText = !text ||
+                        s.userName.toLowerCase().indexOf(text) > -1 ||
+                        s.tp.toLowerCase().indexOf(text) > -1 ||
+                        s.category.toLowerCase().indexOf(text) > -1;
+                    var matchCat = !cat || s.category === cat;
+                    return matchText && matchCat;
+                });
+
+                updateStats();
+            };
+
+            function updateStats() {
+                var list = $scope.filtered;
+                if (list.length === 0) {
+                    $scope.avgScore = '0';
+                    $scope.perfectCount = 0;
+                    $scope.uniqueCategories = 0;
+                    return;
+                }
+                var total = 0;
+                var perfect = 0;
+                var cats = {};
+                list.forEach(function(s) {
+                    total += s.score;
+                    if (s.score === s.totalQuestions) perfect++;
+                    cats[s.category] = true;
+                });
+                $scope.avgScore = (total / list.length).toFixed(1);
+                $scope.perfectCount = perfect;
+                $scope.uniqueCategories = Object.keys(cats).length;
+            }
+
+            $scope.loadScores();
+        }]);
+    </script>
+</body>
+</html>
