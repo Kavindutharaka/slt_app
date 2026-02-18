@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app="quizApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1920, initial-scale=1">
+    <title>SLT Mobitel Enterprise - Q&A</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+
+    <!-- GLASS ANIMATED BACKGROUND -->
+    <div class="bg-layer">
+        <div class="glass-orb orb1"></div>
+        <div class="glass-orb orb2"></div>
+        <div class="glass-orb orb3"></div>
+        <div class="glass-orb orb4"></div>
+        <div class="glass-orb orb5"></div>
+    </div>
+
+    <!-- ========== PAGE 1 : HOME ========== -->
+    <div class="page" ng-show="page === 'home'">
+        <div class="home-logo-wrap" ng-click="onLogoClick($event)">
+            <img src="images/home_logo.png" class="home-logo" alt="SLT Mobitel Enterprise">
+        </div>
+
+        <div class="sub-grid">
+            <div class="sub-card" ng-repeat="cat in categories"
+                 ng-class="{'selected': selectedCategory === cat.category}"
+                 ng-click="selectCategory(cat)">
+                <div class="sub-card-inner">
+                    <img ng-src="images/sub_logo/{{cat.image}}" alt="{{cat.category}}">
+                </div>
+                <span class="sub-label">{{cat.category}}</span>
+            </div>
+        </div>
+
+        <button class="btn-next" ng-click="goToForm()" ng-disabled="!selectedCategory">
+            NEXT
+        </button>
+
+        <!-- ADMIN PANEL (toggle by clicking logo 3 times) -->
+        <div class="admin-overlay" ng-show="showAdmin" ng-click="closeAdmin($event)">
+            <div class="admin-panel" ng-click="$event.stopPropagation()">
+                <h3>Admin Settings</h3>
+                <div class="admin-row" ng-repeat="cat in categories">
+                    <span>{{cat.category}}</span>
+                    <div class="admin-counter">
+                        <button ng-click="decrementQ(cat)">-</button>
+                        <span>{{cat.qCount}}</span>
+                        <button ng-click="incrementQ(cat)">+</button>
+                    </div>
+                    <button class="btn-save-small" ng-click="saveSettings(cat)">Save</button>
+                </div>
+                <button class="btn-close" ng-click="showAdmin = false">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PAGE 2 : FORM ========== -->
+    <div class="page" ng-show="page === 'form'">
+        <div class="form-top-logo">
+            <img ng-src="images/sub_logo/{{getImage(selectedCategory)}}" alt="{{selectedCategory}}">
+        </div>
+
+        <div class="form-card">
+            <h2>Enter Your Details</h2>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" ng-model="userName" placeholder="Your name" maxlength="100">
+            </div>
+            <div class="form-group">
+                <label>TP Number</label>
+                <input type="text" ng-model="userTp" placeholder="TP number" maxlength="50">
+            </div>
+            <button class="btn-start" ng-click="startQuiz()" ng-disabled="!userName || !userTp">
+                START
+            </button>
+        </div>
+    </div>
+
+    <!-- ========== PAGE 3 : QUIZ ========== -->
+    <div class="page" ng-show="page === 'quiz'">
+        <div class="quiz-top-logo">
+            <img ng-src="images/sub_logo/{{getImage(selectedCategory)}}" alt="{{selectedCategory}}">
+        </div>
+
+        <div class="quiz-progress">
+            <span>Question {{currentQIndex + 1}} / {{quizQuestions.length}}</span>
+            <div class="timer-bar-wrap">
+                <div class="timer-bar" ng-style="{'width': timerPercent + '%'}"></div>
+            </div>
+            <span class="timer-text">{{timerSeconds}}s</span>
+        </div>
+
+        <div class="quiz-card">
+            <p class="q-text">{{quizQuestions[currentQIndex].question}}</p>
+
+            <div class="options-list">
+                <button class="option-btn"
+                        ng-repeat="(key, val) in quizQuestions[currentQIndex].options"
+                        ng-click="selectAnswer(key)"
+                        ng-class="{
+                            'selected-opt': selectedAnswer === key && !answerRevealed,
+                            'correct-opt': answerRevealed && key === quizQuestions[currentQIndex].answer,
+                            'wrong-opt': answerRevealed && selectedAnswer === key && key !== quizQuestions[currentQIndex].answer
+                        }"
+                        ng-disabled="answerRevealed">
+                    <span class="opt-key">{{key}}</span>
+                    <span class="opt-text">{{val}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PAGE 4 : RESULTS ========== -->
+    <div class="page" ng-show="page === 'result'">
+        <div class="result-logo">
+            <img ng-src="images/sub_logo/{{getImage(selectedCategory)}}" alt="{{selectedCategory}}">
+        </div>
+
+        <div class="result-card">
+            <h2>Quiz Complete!</h2>
+            <p class="result-name">{{userName}}</p>
+            <div class="score-circle">
+                <span class="score-num">{{score}}</span>
+                <span class="score-denom">/ {{quizQuestions.length}}</span>
+            </div>
+            <p class="result-msg" ng-if="score === quizQuestions.length">Perfect Score!</p>
+            <p class="result-msg" ng-if="score >= quizQuestions.length / 2 && score < quizQuestions.length">Well Done!</p>
+            <p class="result-msg" ng-if="score < quizQuestions.length / 2">Better Luck Next Time!</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

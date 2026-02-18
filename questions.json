@@ -1,0 +1,615 @@
+{
+  "title": "SMARCHAT MEGA - SME PDM STALL Q&A Game",
+  "categories": [
+    {
+      "category": "EdgeDefend",
+      "questions": [
+        {
+          "id": "ED-01",
+          "question": "A medium-sized company wants to implement high-level network security but doesn't have a 24/7 internal IT security team. How does Edge Defend help?",
+          "options": {
+            "A": "It provides a 'Set-and-Forget' device that never needs updates.",
+            "B": "It offers a fully managed service where security experts handle configuration, monitoring, and maintenance.",
+            "C": "It teaches the office receptionist how to block hackers manually."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ED-02",
+          "question": "New cyber threats and viruses are created every day. How does the EdgeDefend managed service keep a business safe from these 'Zero-Day' attacks?",
+          "options": {
+            "A": "By using real-time threat intelligence to automatically update security rules and patches.",
+            "B": "By shutting down the internet connection whenever a new virus is mentioned in the news.",
+            "C": "By asking the customer to manually download security updates every morning."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "ED-03",
+          "question": "With employees working from home and in the office, a manager is worried about data being intercepted. What feature of EdgeDefend solves this?",
+          "options": {
+            "A": "It only allows employees to work if they are physically plugged into the office wall.",
+            "B": "It manages secure, encrypted VPN tunnels so remote staff can access the network safely.",
+            "C": "It sends a security guard to every employee's home to watch their laptop."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ED-04",
+          "question": "Why is a 'Managed Firewall' through EdgeDefend often better for a growing business than buying their own expensive hardware?",
+          "options": {
+            "A": "It allows the business to avoid large upfront costs by using a predictable monthly service model.",
+            "B": "It makes the office's electricity bill disappear.",
+            "C": "Buying your own hardware is considered an outdated practice that is now illegal."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "ED-05",
+          "question": "A business owner notices that office bandwidth is being wasted on non-work-related streaming and high-risk websites. How can Edge Defend assist?",
+          "options": {
+            "A": "It can physically slow down the computers of employees who watch videos.",
+            "B": "It allows for customized 'Web Filtering' to block risky or unproductive categories of websites.",
+            "C": "It sends an automated email to the owner every time a 'Like' is clicked on social media."
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "Kaspersky",
+      "questions": [
+        {
+          "id": "KA-01",
+          "question": "What is the main benefit highlighted in Kaspersky's platform?",
+          "options": {
+            "A": "Multiple licenses for each device",
+            "B": "One single license, one single agent, one single dashboard",
+            "C": "Only cloud-based security"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "KA-02",
+          "question": "The Anti-Malware Engine is mainly used for:",
+          "options": {
+            "A": "Data backup",
+            "B": "Virus and threat detection",
+            "C": "Email marketing"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "KA-03",
+          "question": "Device Control in Kaspersky allows you to:",
+          "options": {
+            "A": "Control employee attendance",
+            "B": "Block internet completely",
+            "C": "Manage and trust specific devices"
+          },
+          "answer": "C"
+        },
+        {
+          "id": "KA-04",
+          "question": "What does EDR stand for in Kaspersky EDR?",
+          "options": {
+            "A": "External Data Recovery",
+            "B": "Endpoint Detection and Response",
+            "C": "Enterprise Data Routing"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "KA-05",
+          "question": "What is the minimum license count for SME customers?",
+          "options": {
+            "A": "1",
+            "B": "5",
+            "C": "10"
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "Hostingcub",
+      "questions": [
+        {
+          "id": "HC-01",
+          "question": "A Sri Lankan e-commerce site switches its hosting from a US-based server to HostingCub. What is the most immediate benefit for their local customers?",
+          "options": {
+            "A": "The website will load significantly faster due to lower latency from being hosted in Sri Lanka.",
+            "B": "The website will automatically translate all text into five different languages.",
+            "C": "The website will only be visible during daylight hours in Sri Lanka."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "HC-02",
+          "question": "A small business owner wants to create email accounts and manage their files but isn't a 'Linux Expert.' How does HostingCub make this easy?",
+          "options": {
+            "A": "By providing the Plesk Panel, a world-class graphical interface for easy 'point-and-click' management.",
+            "B": "By requiring the owner to mail a physical letter to the data center for every change.",
+            "C": "By only allowing changes to be made through a secret code."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "HC-03",
+          "question": "If a local developer has a technical question about their hosting at 2:00 PM on a Tuesday, why is HostingCub a better choice than a random overseas provider?",
+          "options": {
+            "A": "Because they have to wait for the US time zone to wake up.",
+            "B": "Because they get local support that understands the Sri Lankan business context and connectivity.",
+            "C": "Because HostingCub provides a free flight to the data center to fix the issue."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "HC-04",
+          "question": "A blogger is looking for 'attractive pricing' to start their first website without a huge investment. Why is HostingCub Shared Hosting the right fit?",
+          "options": {
+            "A": "It allows them to share server resources with others, making professional hosting highly affordable.",
+            "B": "It is free, but they have to display the hosting provider's face on every page.",
+            "C": "It requires them to pay for 10 years of service upfront in cash."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "HC-05",
+          "question": "A developer wants to install WordPress and ensure the site has an SSL certificate (the green padlock). How does the Plesk Panel on HostingCub help?",
+          "options": {
+            "A": "It requires the developer to write 500 lines of security code manually.",
+            "B": "It features a 'One-Click Installer' for WordPress and easy SSL management tools.",
+            "C": "It automatically deletes any website that doesn't use a specific font."
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "Akaza Cloud Fusion",
+      "questions": [
+        {
+          "id": "ACF-01",
+          "question": "With Akaza Cloud Fusion now powered by Huawei Public Cloud, what is a major advantage for a Sri Lankan business looking to expand globally?",
+          "options": {
+            "A": "They can only host data within their own office building.",
+            "B": "They can deploy applications across a global network of data centers with consistent performance.",
+            "C": "They get a free physical map of every data center in the world."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ACF-02",
+          "question": "Beyond basic storage and computing, what 'Next-Gen' technologies can customers now access through the Huawei Public Cloud rebranding?",
+          "options": {
+            "A": "Advanced AI, Machine Learning, and Big Data analytics tools.",
+            "B": "A digital assistant that writes all their emails for them automatically.",
+            "C": "A way to turn their old office servers into solar panels."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "ACF-03",
+          "question": "A government institution wants to keep sensitive data on-site but use the public cloud for high-traffic web apps. How does Akaza Cloud Fusion support this?",
+          "options": {
+            "A": "It requires them to move everything to the public cloud immediately.",
+            "B": "It supports 'Hybrid Cloud' setups, allowing seamless integration between local infrastructure and public cloud services.",
+            "C": "It sends a technician to physically move the servers back and forth every week."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ACF-04",
+          "question": "A startup experiences a massive surge in website traffic during a holiday sale. How does the Akaza CloudFusion model handle this cost-effectively?",
+          "options": {
+            "A": "It charges a high flat fee regardless of how much data is used.",
+            "B": "It uses an 'Elastic' model where resources scale up for the surge and the customer only pays for what they actually used.",
+            "C": "It shuts down the website once the traffic gets too high to save money."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ACF-05",
+          "question": "A financial firm is worried about international security standards. How does the rebranded Akaza Cloud Fusion address this?",
+          "options": {
+            "A": "It provides 100+ global security and privacy certifications, ensuring data is handled with world-class protection.",
+            "B": "It asks the customer to design their own security system from scratch.",
+            "C": "It promises that no one will ever look at the servers because they are hidden."
+          },
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "category": "CubKit",
+      "questions": [
+        {
+          "id": "CK-01",
+          "question": "A small business owner needs a professional website launched by tomorrow for a flash sale. How does Cubkit help them meet this tight deadline?",
+          "options": {
+            "A": "It provides a 'Done-for-You' service where the computer builds itself.",
+            "B": "It uses AI-guided onboarding and drag-and-drop templates to create a site in minutes.",
+            "C": "It automatically copies a competitor's website and changes the logo."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "CK-02",
+          "question": "A busy entrepreneur is always on the move and doesn't have time to sit at a desk to update their site. What is a key feature of the Cubkit editor?",
+          "options": {
+            "A": "It only allows updates between 9:00 AM and 5:00 PM.",
+            "B": "It is mobile-responsive, allowing users to update their website directly from a smartphone or tablet.",
+            "C": "It requires a specialized 'Web-Building' laptop to make any change."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "CK-03",
+          "question": "A local craft store wants to start selling products online but is worried about the technical side of 'Shopping Carts.' How does Cubkit Store simplify this?",
+          "options": {
+            "A": "It provides a built-in e-commerce engine with ready-to-use payment gateways like PayPal or Stripe.",
+            "B": "It sends an automated SMS to the store owner to tell them to go pick up the cash.",
+            "C": "It requires the customer to mail a physical check to the website's headquarters."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "CK-04",
+          "question": "A user wants to change their website's color scheme and add a contact form, but they don't know any HTML or CSS code. What should they do in Cubkit?",
+          "options": {
+            "A": "Hire an expensive web developer to write the code for them.",
+            "B": "Simply use the visual 'Style Manager' and drag-and-drop widgets to add features.",
+            "C": "Give up and use a social media page instead."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "CK-05",
+          "question": "A startup wants to look established and trustworthy to new clients. Which 'All-in-One' benefit of Cubkit helps build this professional image?",
+          "options": {
+            "A": "It provides a free subdomain that includes the word 'Trial-User.'",
+            "B": "It bundles professional hosting, SSL security certificates, and custom domain support in one package.",
+            "C": "It puts a large 'Made by a Beginner' badge at the top of every page."
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "Traverse",
+      "questions": [
+        {
+          "id": "TR-01",
+          "question": "A real estate agent uses Traverse to show a luxury apartment to an international buyer. What is the biggest advantage this provides to the agent?",
+          "options": {
+            "A": "It allows the agent to take a nap while the client views the home.",
+            "B": "It qualifies leads by letting clients explore the layout before a physical visit.",
+            "C": "It automatically cleans the actual apartment for the next showing."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "TR-02",
+          "question": "A high-end furniture brand creates a Traverse virtual showroom. How does this improve the customer's shopping experience?",
+          "options": {
+            "A": "Customers can visualize how furniture fits in a space from their own home.",
+            "B": "It prevents other customers from 'virtually' touching the items.",
+            "C": "It limits the number of items a customer is allowed to look at."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "TR-03",
+          "question": "A resort uses Traverse to offer a 'Virtual Stay' preview. Which feature would most likely increase guest bookings?",
+          "options": {
+            "A": "A digital mini-game where you find hidden beach balls.",
+            "B": "High-definition 360° views that show the exact view from a specific room.",
+            "C": "A list of all the resort's previous guests from 10 years ago."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "TR-04",
+          "question": "A university implements a Traverse virtual tour for prospective students. What is the primary 'pain point' this solves?",
+          "options": {
+            "A": "It helps students find the best places to hide from exams.",
+            "B": "It allows students who live far away to 'walk' the campus without travel costs.",
+            "C": "It replaces the need for actual professors on campus."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "TR-05",
+          "question": "An event planner is using Traverse to organize a large conference in a virtualized convention center. How does the tool help them?",
+          "options": {
+            "A": "It generates a random list of music for the event.",
+            "B": "It allows them to virtually place booths and signage to check flow and visibility.",
+            "C": "It provides a 'Virtual Buffet' where guests can see digital food."
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "Zoho Bigin",
+      "questions": [
+        {
+          "id": "ZB-01",
+          "question": "What is Zoho Bigin mainly designed for?",
+          "options": {
+            "A": "Large enterprises only",
+            "B": "Small & growing businesses",
+            "C": "Personal use"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ZB-02",
+          "question": "Zoho Bigin helps businesses avoid:",
+          "options": {
+            "A": "Customer follow-ups",
+            "B": "Manual excel tracking",
+            "C": "Sales growth"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ZB-03",
+          "question": "Why do many SMEs prefer Zoho Bigin over full-scale CRM platforms?",
+          "options": {
+            "A": "It replaces ERP systems",
+            "B": "It balances functionality with simplicity, reducing implementation time",
+            "C": "It requires dedicated IT teams"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ZB-04",
+          "question": "Which feature helps track deals visually?",
+          "options": {
+            "A": "Spreadsheet View",
+            "B": "Pipeline View",
+            "C": "Calendar Sync"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ZB-05",
+          "question": "In Zoho Bigin, what is the purpose of 'Pipelines' beyond tracking deals?",
+          "options": {
+            "A": "To store invoices",
+            "B": "To represent different operational workflows",
+            "C": "To send marketing campaigns"
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "OrdeNow",
+      "questions": [
+        {
+          "id": "ON-01",
+          "question": "How can customers place their orders using this solution?",
+          "options": {
+            "A": "By calling the restaurant and waiting in line",
+            "B": "By scanning, viewing the menu, and ordering digitally",
+            "C": "By filling out a paper form"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ON-02",
+          "question": "If a restaurant launches a lunchtime promotion that needs to go live immediately, what is the biggest advantage of this platform?",
+          "options": {
+            "A": "Promotions can be updated instantly without reprinting menus",
+            "B": "Customers must refresh manually after 24 hours",
+            "C": "Changes require IT support for each update"
+          },
+          "answer": "A"
+        },
+        {
+          "id": "ON-03",
+          "question": "How does this solution improve customer experience?",
+          "options": {
+            "A": "Reduces waiting time with a seamless ordering process",
+            "B": "Requires customers to stand in queues",
+            "C": "Limits ordering to cashier counters only"
+          },
+          "answer": "A"
+        },
+        {
+          "id": "ON-04",
+          "question": "What operational challenge does digital ordering primarily solve during busy hours?",
+          "options": {
+            "A": "Kitchen staff preparing fewer meals",
+            "B": "Long queues and delays in taking orders",
+            "C": "Customers avoiding restaurants altogether"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ON-05",
+          "question": "Why is a seamless scan-and-order experience more effective for modern customers?",
+          "options": {
+            "A": "It matches their preference for fast, contactless, self-service interactions",
+            "B": "It removes the need for menus entirely in all situations",
+            "C": "It forces customers to download complex software before ordering"
+          },
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "category": "Akaza Chat X",
+      "questions": [
+        {
+          "id": "ACX-01",
+          "question": "What is the primary strategic objective of implementing Akaza ChatX for SMEs?",
+          "options": {
+            "A": "To replace all traditional communication channels including email and phone",
+            "B": "To enable structured, scalable, and compliant customer engagement over WhatsApp",
+            "C": "To provide employees with personal social messaging access",
+            "D": "To create social media marketing campaigns"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ACX-02",
+          "question": "Akaza ChatX operates based on which official communication framework?",
+          "options": {
+            "A": "Peer-to-peer consumer messaging model",
+            "B": "Open-source SMS relay architecture",
+            "C": "WhatsApp Business API infrastructure",
+            "D": "Standard mobile app-to-app messaging"
+          },
+          "answer": "C"
+        },
+        {
+          "id": "ACX-03",
+          "question": "Which of the following capabilities is NOT a core function of Akaza ChatX?",
+          "options": {
+            "A": "Centralized multi-agent customer handling",
+            "B": "Automated workflow-based responses, message routing and engagement",
+            "C": "Integration with internal systems through open APIs",
+            "D": "Built-in real-time video conferencing platform"
+          },
+          "answer": "D"
+        },
+        {
+          "id": "ACX-04",
+          "question": "From a compliance and branding perspective, what differentiates Akaza ChatX from using a personal WhatsApp number?",
+          "options": {
+            "A": "It allows unlimited broadcast messages without approval",
+            "B": "It supports verified business identity and structured messaging templates",
+            "C": "It enables anonymous communication with customers",
+            "D": "It automatically converts chats into social media posts"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "ACX-05",
+          "question": "Regarding communication capabilities, which statement correctly describes Akaza ChatX functionality?",
+          "options": {
+            "A": "It enables two-way official WhatsApp messaging and WhatsApp voice calling",
+            "B": "It supports structured and automated messaging only, without calling capability",
+            "C": "It functions primarily as a VoIP solution with limited messaging",
+            "D": "It replaces traditional PBX systems for outbound calling"
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "PeoBiz",
+      "questions": [
+        {
+          "id": "PB-01",
+          "question": "A boutique hotel owner wants to install 12 TVs in different guest rooms but doesn't want 12 different messy cables drilled through their walls. How does PEO TV Biz help?",
+          "options": {
+            "A": "It uses a single fiber cable to carry the signal for up to 15 connections.",
+            "B": "It requires guests to bring their own satellite dishes.",
+            "C": "It only works if all 12 TVs are in the same room."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "PB-02",
+          "question": "A small cafe starts with 2 PEO TV connections but grows into a large sports bar needing 10 screens. What is the process for upgrading?",
+          "options": {
+            "A": "They must dig up the street to lay 8 more fiber cables.",
+            "B": "They can easily scale up to 15 connections using their existing single fiber line.",
+            "C": "They have to buy a completely new building for the extra TVs"
+          },
+          "answer": "B"
+        },
+        {
+          "id": "PB-03",
+          "question": "When a business runs 10 different PEO TV connections off one fiber cable, what happens to the HD picture quality?",
+          "options": {
+            "A": "The picture quality gets blurry on all TVs if more than two are on.",
+            "B": "High-speed fiber ensures dedicated bandwidth so every TV can enjoy crisp HD content simultaneously.",
+            "C": "The TVs will only show black-and-white images to save energy."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "PB-04",
+          "question": "A medical clinic wants a TV in the waiting area, the staff room, and three private wards. Why is PEO TV Biz the smart choice compared to individual home connections?",
+          "options": {
+            "A": "It offers a centralized business package that is more cost-effective for multiple points.",
+            "B": "It gives the doctor a discount on their personal phone bill.",
+            "C": "It allows the clinic to charge patients for every minute they watch."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "PB-05",
+          "question": "A gym owner is worried that 15 TV connections will require a massive, heat-generating server room. How does the 'Single Fiber' solution address this?",
+          "options": {
+            "A": "It requires the gym to install an industrial air conditioner just for the cables.",
+            "B": "It simplifies the hardware footprint by streamlining the input through one high-capacity line.",
+            "C": "It turns the gym equipment into antennas so no cables are needed at all"
+          },
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "category": "Dataone",
+      "questions": [
+        {
+          "id": "DO-01",
+          "question": "A business owner has three different offices in the city. Instead of paying for three separate data plans, they use the Dataone Common Bucket. What is the primary benefit?",
+          "options": {
+            "A": "Each office is forced to use exactly 33% of the data.",
+            "B": "All offices draw from one central pool, so a busy office can use 'leftover' data from a quiet one.",
+            "C": "It makes the internet cables physically shorter."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "DO-02",
+          "question": "At the end of the month, 'Connection A' has used very little data, while 'Connection B' is about to hit its limit. How does the Common Bucket help?",
+          "options": {
+            "A": "It automatically deletes the browsing history of Connection A.",
+            "B": "Connection B can continue working by using the unused data from Connection A's share.",
+            "C": "It sends a bill to the neighbors to cover the extra usage."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "DO-03",
+          "question": "An administrator is tired of tracking five different invoices for five different broadband lines. How does the Dataone Common Bucket solve this?",
+          "options": {
+            "A": "It generates one single consolidated bill for the entire data pool.",
+            "B": "It asks the administrator to guess the total cost each month.",
+            "C": "It hides the bill so the administrator doesn't get stressed."
+          },
+          "answer": "A"
+        },
+        {
+          "id": "DO-04",
+          "question": "A construction company has a main headquarters and three temporary site offices. Why is a common bucket ideal for this scenario?",
+          "options": {
+            "A": "It allows site offices to have data access without needing a permanent physical address.",
+            "B": "It ensures that if a site office closes, the remaining data isn't 'lost' and can be used by HQ.",
+            "C": "It provides free coffee to the workers at the site offices."
+          },
+          "answer": "B"
+        },
+        {
+          "id": "DO-05",
+          "question": "Using the Dataone dashboard, a manager notices one connection is consuming too much data from the bucket. What can they do?",
+          "options": {
+            "A": "They can set 'sub-limits' or alerts for specific connections to balance the pool.",
+            "B": "They have to physically unplug the router at that location.",
+            "C": "They can change the color of the internet light on the modem."
+          },
+          "answer": "A"
+        }
+      ]
+    }
+  ]
+}
