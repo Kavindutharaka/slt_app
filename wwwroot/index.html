@@ -103,7 +103,11 @@
             <div class="timer-bar-wrap">
                 <div class="timer-bar" ng-style="{'width': timerPercent + '%'}"></div>
             </div>
-            <span class="timer-text">{{timerSeconds}}s</span>
+            <span class="timer-text" ng-class="{'timer-danger': timerDanger}">{{timerSeconds}}s</span>
+        </div>
+
+        <div class="time-over-banner" ng-show="timeOver && answerRevealed">
+            TIME'S UP!
         </div>
 
         <div class="quiz-card">
@@ -115,8 +119,9 @@
                         ng-click="selectAnswer(key)"
                         ng-class="{
                             'selected-opt': selectedAnswer === key && !answerRevealed,
-                            'correct-opt': answerRevealed && key === quizQuestions[currentQIndex].answer,
-                            'wrong-opt': answerRevealed && selectedAnswer === key && key !== quizQuestions[currentQIndex].answer
+                            'correct-opt': answerRevealed && !timeOver && key === quizQuestions[currentQIndex].answer,
+                            'wrong-opt': answerRevealed && !timeOver && selectedAnswer === key && key !== quizQuestions[currentQIndex].answer,
+                            'timeout-opt': answerRevealed && timeOver
                         }"
                         ng-disabled="answerRevealed">
                     <span class="opt-key">{{key}}</span>

@@ -44,6 +44,8 @@ function ($scope, $http, $timeout, $interval) {
     $scope.timerPercent = 100;
     $scope.selectedAnswer = null;
     $scope.answerRevealed = false;
+    $scope.timeOver = false;
+    $scope.timerDanger = false;
 
     var questionTimer = null;
 
@@ -133,11 +135,16 @@ function ($scope, $http, $timeout, $interval) {
         $scope.timerPercent = 100;
         $scope.selectedAnswer = null;
         $scope.answerRevealed = false;
+        $scope.timeOver = false;
+        $scope.timerDanger = false;
 
         questionTimer = $interval(function () {
             $scope.timerSeconds--;
             $scope.timerPercent = ($scope.timerSeconds / $scope.globalTimer) * 100;
+            $scope.timerDanger = $scope.timerSeconds <= 5 && $scope.timerSeconds > 0;
             if ($scope.timerSeconds <= 0) {
+                $scope.timerDanger = false;
+                $scope.timeOver = true;
                 revealAndAdvance(null);
             }
         }, 1000);
